@@ -2,7 +2,10 @@
 
 import sys
 
-import aem.lab1
+import aem.lab1.data_import
+import aem.lab1.plot
 
 if __name__ == '__main__':
-    print('lab1')
+    points = aem.lab1.data_import.load_points('data/cluster1.txt')
+    distances = aem.lab1.data_import.distance_matrix(points)
+    aem.lab1.plot.plot_solution(points, [])
