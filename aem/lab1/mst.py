@@ -3,14 +3,15 @@ import numpy as np
 import itertools
 
 class MST:
-    def __init__(self, distances):
+    def __init__(self, distances, vertices=None):
         self.distances = distances
         
-        n = distances.shape[0]
-        self.vertices = {i: (float('inf'), None) for i in range(n)}
+        if vertices is None:
+            vertices = range(distances.shape[0])
+        self.vertices = {i: (float('inf'), None) for i in vertices}
 
         self.tree = set()
-        self.cost = 0
+        self.cost = 0.0
     
     def next_vertex(self):
         vertex = min(self.vertices, key=lambda i: self.vertices[i][0])
