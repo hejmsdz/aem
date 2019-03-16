@@ -14,14 +14,17 @@ def plot_solution(points, distances, labels):
         clusters[label].add(i)
 
     lines = []
+    cost = 0.0
     for i, cluster in enumerate(clusters):
         mst = MST(distances, cluster)
         mst.find()
+        cost += mst.cost
         for (a, b) in mst.tree:
             x1, y1 = points[a]
             x2, y2 = points[b]
             lines.extend([(x1, x2), (y1, y2), f"C{i}"])
 
     plt.plot(*lines)
+    plt.title(f"c = {cost:.1f}")
 
     pylab.show()
