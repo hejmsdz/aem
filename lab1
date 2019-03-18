@@ -2,12 +2,13 @@
 
 import aem.lab1.data_import
 import aem.lab1.plot
+from aem.lab1.greedy import cluster
 
 from sklearn.cluster import KMeans
 
 if __name__ == '__main__':
     points = aem.lab1.data_import.load_points('data/cluster1.txt')
-    kmeans = KMeans(n_clusters=10, random_state=0).fit(points)
-
     distances = aem.lab1.data_import.distance_matrix(points)
-    aem.lab1.plot.plot_solution(points, distances, kmeans.labels_)
+
+    labels = cluster(distances, 10)
+    aem.lab1.plot.plot_solution(points, distances, labels)
