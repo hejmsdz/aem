@@ -23,13 +23,12 @@ def cluster(distances, n_clusters):
         if ab_cost > ba_cost:
             points[i + 1] = a
             a = b
-
+            
         insert_to_nearest(a, clusters, distances)
 
-        if i == n - 2:
-            insert_to_nearest(b, clusters, distances)
+    insert_to_nearest(points[n - 1], clusters, distances)
     
-    return clusters_to_labels(n, clusters)
+    return clusters
 
 def sequence_cost(sequence, existing_clusters, distances):
     clusters = [cluster[:] for cluster in existing_clusters]

@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 
+import time
+
 import aem.lab1.data_import
 import aem.lab1.plot
 from aem.lab1.greedy import cluster
-
-from sklearn.cluster import KMeans
+from aem.lab1.utils import clusters_to_labels
 
 if __name__ == '__main__':
     points = aem.lab1.data_import.load_points('data/cluster1.txt')
     distances = aem.lab1.data_import.distance_matrix(points)
 
-    labels = cluster(distances, 10)
-    aem.lab1.plot.plot_solution(points, distances, labels)
+    forest = cluster(distances, 10)
+    aem.lab1.plot.plot_solution(points, distances, forest)
